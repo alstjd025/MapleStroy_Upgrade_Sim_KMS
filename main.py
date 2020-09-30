@@ -2,7 +2,7 @@
 MapleStory(kms) upgrade system simulation
 
 [Main Structure]
-abs_class.py    (abstract class)
+abc_class.py    (abstract class)
     method
         calc_pct
         calc_meso
