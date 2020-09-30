@@ -4,9 +4,9 @@ MapleStory(kms) upgrade system simulation
 [Main Structure]
 abc_class.py    (abstract class)
     method
-        calc_pct
-        calc_meso
-        calc_stat
+        calc_pct   (calc percantage)
+        calc_meso    (calc meso)
+        calc_stat     (calc stat)
 
 pot_sim.py  (potential sim function)
     method
@@ -38,6 +38,13 @@ main.py   (main file)
 dev tips
     itertools?
 """
+
+
+import starforce_sim as starforce
+import scrolls_sim as scrolls
+import pot_sim as pot
+
+
 
 
 
