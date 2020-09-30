@@ -39,10 +39,53 @@ dev tips
     itertools?
 """
 
-
+import abs_class as abs
 import starforce_sim as starforce
 import scrolls_sim as scrolls
 import pot_sim as pot
+
+
+print("MapleStory Item Upgrade Simulator[kms] ver 0.1\n")
+print("-----------------------------------------------\n")
+print("1. Starfore Simulator\n")
+print("2. Scroll upgrade Simulator\n")
+print("3. Potential cube Simulator\n")
+print("4. Exit\n")
+print("Please Enter Command : ")
+
+select = input()
+if(select == 1):
+    sim = starforce.starforce_class()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
