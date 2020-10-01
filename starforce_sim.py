@@ -9,7 +9,7 @@ class StarforceClass(AbcClass):
         print("1. 150lv")
         print("2. 160lv")
         print("3. 200lv")
-        item_lev = input("Set Item Level : ")
+        self.item_lev = input("Set Item Level : ")
 
 
     def calc_expectation(self, meso, target):   # calc expectation to target value
