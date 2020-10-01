@@ -69,10 +69,12 @@ while status != 4:
     if select == '1':
         status = 1
         sim = StarforceClass()
+        sim.clear()
         sim.starforce_starting_ui()
     else:
-        print("Input error! Please check your command")
         sim = StarforceClass()
+        sim.clear()
+        print("Input error! Please check your command")
         status = 0
         select = sim.main_ui()
 
