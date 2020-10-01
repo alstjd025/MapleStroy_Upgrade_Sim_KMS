@@ -8,3 +8,6 @@ class StarforceClass(AbcClass):
     def calc_stat(self):  # calc stat
         pass
 
+    def calc_expectation(self):   # calc expectation
+        pass
+

@@ -45,12 +45,12 @@ import scrolls_sim as scrolls
 import pot_sim as pot
 
 
-print("MapleStory Item Upgrade Simulator[kms] ver 0.1\n")
-print("-----------------------------------------------\n")
-print("1. Starfore Simulator\n")
-print("2. Scroll upgrade Simulator\n")
-print("3. Potential cube Simulator\n")
-print("4. Exit\n")
+print("MapleStory Item Upgrade Simulator[kms] ver 0.1")
+print("-----------------------------------------------")
+print("1. Starforce Simulator")
+print("2. Scroll upgrade Simulator")
+print("3. Potential cube Simulator")
+print("4. Exit")
 print("Please Enter Command : ")
 
 select = input()
