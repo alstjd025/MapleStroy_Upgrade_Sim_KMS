@@ -6,9 +6,14 @@ ABS class file
 from abc import *
 import random
 import os
+from time import sleep
 
 
 class AbcClass(metaclass=ABCMeta):
+    # concole wait
+    def sleepn(self, n):
+        sleep(n)
+        pass
     # console clear
     def clear(self):
         print('\n' * 100)
