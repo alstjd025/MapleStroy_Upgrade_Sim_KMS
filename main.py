@@ -39,23 +39,42 @@ dev tips
     itertools?
 """
 
-import abs_class as abs
-import starforce_sim as starforce
-import scrolls_sim as scrolls
-import pot_sim as pot
+from abs_class import *
+from starforce_sim import *
+from scrolls_sim import *
+from pot_sim import *
 
 
-print("MapleStory Item Upgrade Simulator[kms] ver 0.1")
-print("-----------------------------------------------")
-print("1. Starforce Simulator")
-print("2. Scroll upgrade Simulator")
-print("3. Potential cube Simulator")
-print("4. Exit")
-print("Please Enter Command : ")
+"""
+status
+0 wait
+1 starforce
+2 scroll
+3 potential cube
+4 exit
+"""
 
-select = input()
-if(select == 1):
-    sim = starforce.starforce_class()
+status = 1
+select = 0
+if status == 1:
+    print("MapleStory Item Upgrade Simulator[kms] ver 0.1")
+    print("-----------------------------------------------")
+    print("1. Starforce Simulator")
+    print("2. Scroll upgrade Simulator")
+    print("3. Potential cube Simulator")
+    print("4. Exit")
+    select = input("Choose action : ")
+
+while status != 4:
+    if select == '1':
+        status = 1
+        sim = StarforceClass()
+        sim.starforce_starting_ui()
+    else:
+        print("Input error! Please check your command")
+        sim = StarforceClass()
+        status = 0
+        select = sim.main_ui()
 
 
 

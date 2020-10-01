@@ -2,12 +2,22 @@ from abs_class import AbcClass
 
 
 class StarforceClass(AbcClass):
-    def calc_meso(self, meso, trial):  # clac meso spent
+
+    def starforce_starting_ui(self):
+        print("Starforce upgrade Simulation")
+        print("-----------------------------------------------")
+        print("1. 150lv")
+        print("2. 160lv")
+        print("3. 200lv")
+        item_lev = input("Set Item Level : ")
+
+
+    def calc_expectation(self, meso, target):   # calc expectation to target value
         pass
 
-    def calc_stat(self):  # calc stat
+    def calc_meso_used(self, meso, trial):  # clac current meso spent
         pass
 
-    def calc_expectation(self):   # calc expectation
+    def calc_stat(self):  # calc end stat
         pass
 
