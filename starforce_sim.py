@@ -1,7 +1,7 @@
-from abs_class import abc_class
+from abs_class import AbcClass
 
 
-class starforce_class(abc_class):
+class StarforceClass(AbcClass):
     def calc_meso(self, meso, trial):  # clac meso spent
         pass
 

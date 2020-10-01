@@ -6,7 +6,8 @@ ABS class file
 from abc import *
 import random
 
-class abc_class(metaclass=ABCMeta):
+
+class AbcClass(metaclass=ABCMeta):
 
     def main_ui(self):
         print("MapleStory Item Upgrade Simulator[kms] ver 0.1\n")
