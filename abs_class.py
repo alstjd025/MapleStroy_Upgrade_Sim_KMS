@@ -9,12 +9,14 @@ import os
 
 
 class AbcClass(metaclass=ABCMeta):
-#consol clear
+    # console clear
     def clear(self):
-        """
-        os.system('cls') -- replace when running on cmd
-        """
         print('\n' * 100)
+        """
+        only on IDE
+        os.system('cls') -- replace to this when running on cmd
+        """
+        pass
 
     def main_ui(self):
         self.clear()

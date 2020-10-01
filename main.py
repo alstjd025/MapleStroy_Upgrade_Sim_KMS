@@ -71,6 +71,16 @@ while status != 4:
         sim = StarforceClass()
         sim.clear()
         sim.starforce_starting_ui()
+    elif select == '2':
+        status = 2
+        print("not implemented")
+    elif select == '3':
+        status = 3
+        print("not implemented")
+    elif select == '4':
+        status = 4
+        print("Exit... end status :", status)
+        exit(0)
     else:
         sim = StarforceClass()
         sim.clear()
