@@ -14,7 +14,7 @@ class StarforceClass(AbcClass):
         self.spent_meso = 0
         self.trials = 0
         self.chance = 0
-
+        self.destroy_prev = 2
 
     def starforce_starting_ui(self):
         self.clear()
@@ -27,6 +27,15 @@ class StarforceClass(AbcClass):
         self.start = input("Set Starting Star(min 0 ~ max 24) : ")
         print("Set Target Star(min", self.start+1, " ~ max 25) : ")
         self.target = input()
+        while self.destroy_prev == 2:
+            print("Use Destroy Prevention? [y/n]")
+            answer = input()
+            if answer == 'y':
+                self.destroy_prev = 0
+            elif answer == 'n':
+                self.destroy_prev = 1
+            else:
+                self.destroy_prev = 2
         pass
 
     def main_simulation(self):
@@ -35,6 +44,7 @@ class StarforceClass(AbcClass):
         print("Starforce upgrade Simulation Start")
         print("-----------------------------------------------")
         while self.current_star != self.target:
+
 
 
 

@@ -10,7 +10,7 @@ from time import sleep
 
 
 class AbcClass(metaclass=ABCMeta):
-    # concole wait
+    # console wait
     def sleepn(self, n):
         sleep(n)
         pass
@@ -57,7 +57,7 @@ class AbcClass(metaclass=ABCMeta):
                 self.sleepn(1)
 
     def calc_pct(self, max):    # make random integer range 1~max
-        rand_num = random.randint(1, max)
+        rand_num = random.uniform(1, max)
         return rand_num
 
     @abstractmethod
