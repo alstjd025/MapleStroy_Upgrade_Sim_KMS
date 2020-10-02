@@ -71,6 +71,7 @@ while status != 4:
         sim = StarforceClass()
         sim.clear()
         sim.starforce_starting_ui()
+        sim.main_simulation()
     elif select == '2':
         status = 2
         print("not implemented")

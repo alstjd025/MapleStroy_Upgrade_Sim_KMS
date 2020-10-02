@@ -34,6 +34,28 @@ class AbcClass(metaclass=ABCMeta):
         select = input("Please Enter Command : ")
         return select
 
+    def get_item_level(self):
+        self.sim_status = 0
+        while self.sim_status != 1:
+            self.clear()
+            print("1. 150lv")
+            print("2. 160lv")
+            print("3. 200lv")
+            self.temp = input("Set Item Level : ")
+            if self.temp == '1':
+                return 150
+                self.sim_status = 1
+            elif self.temp == '2':
+                return 160
+                self.sim_status = 1
+            elif self.temp == '3':
+                return 200
+                self.sim_status = 1
+            else:
+                print("Input error! Please check your command")
+                self.sim_status = 0
+                self.sleepn(1)
+
     def calc_pct(self, max):    # make random integer range 1~max
         rand_num = random.randint(1, max)
         return rand_num

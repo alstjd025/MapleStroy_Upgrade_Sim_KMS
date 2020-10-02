@@ -6,34 +6,37 @@ set lev -> set starting -> set target -> simulate
 """
 
 class StarforceClass(AbcClass):
+    def __init__(self):
+        self.start = 0
+        self.target = 0
+        self.item_lev = 0
+        self.current_star = 0
+        self.spent_meso = 0
+        self.trials = 0
+        self.chance = 0
+
 
     def starforce_starting_ui(self):
-        self.sim_status = 0
-        while(self.sim_status != 1):
-            self.clear()
-            print("Starforce upgrade Simulation")
-            print("-----------------------------------------------")
-            print("1. 150lv")
-            print("2. 160lv")
-            print("3. 200lv")
-            self.temp = input("Set Item Level : ")
-            if self.temp == '1':
-                self.item_lev = 150
-                self.sim_status = 1
-            elif self.temp == '2':
-                self.item_lev = 160
-                self.sim_status = 1
-            elif self.temp == '3':
-                self.item_lev = 200
-                self.sim_status = 1
-            else:
-                print("Input error! Please check your command")
-                self.sim_status = 0
-                self.sleepn(1)
+        self.clear()
+        print("Starforce upgrade Simulation")
+        print("-----------------------------------------------")
+        self.item_lev = self.get_item_level()
         self.clear()
         print(self.item_lev, "Lv Item upgrade")
         print("-----------------------------------------------")
         self.start = input("Set Starting Star(min 0 ~ max 24) : ")
+        print("Set Target Star(min", self.start+1, " ~ max 25) : ")
+        self.target = input()
+        pass
+
+    def main_simulation(self):
+        self.clear()
+        self.current_star = self.start
+        print("Starforce upgrade Simulation Start")
+        print("-----------------------------------------------")
+        while self.current_star != self.target:
+
+
 
     def calc_expectation(self, meso, target):   # calc expectation to target value
         pass
