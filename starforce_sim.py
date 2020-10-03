@@ -1,5 +1,6 @@
 from abs_class import AbcClass
 import chance_datasheet as datasheet
+import math
 """
 [Flow]
 set lev -> set starting -> set target -> simulate
@@ -25,6 +26,8 @@ class StarforceClass(AbcClass):
         self.destroyed = 0
         self.destroy_prevent = 2
         self.item_price = 0
+        self.chancetime = 0
+        self.money_temp = 0
 
     def starforce_starting_ui(self):
         self.clear()
@@ -37,7 +40,7 @@ class StarforceClass(AbcClass):
         self.clear()
         print("Input Item Price")
         print("-----------------------------------------------")
-        self.item_price = input()
+        self.item_price = int(input())
         self.clear()
         self.start = int(input("Set Starting Star(min 0 ~ max 24) : "))
         print("Set Target Star(min", self.start, "~ max 25) : ")
@@ -64,7 +67,13 @@ class StarforceClass(AbcClass):
             self.destroy_chance = datasheet.st_des[self.current_star]
             self.chance = self.calc_pct(100)
             # Succeed
-            if self.chance <= self.success_chance:
+            if self.chancetime == 2:
+                self.current_star += 1
+                self.success_count += 1
+                self.star.append("★")
+                self.trials += 1
+                self.chancetime = 0
+            elif self.chance <= self.success_chance:
                 self.current_star += 1
                 self.success_count += 1
                 self.star.append("★")
@@ -75,34 +84,44 @@ class StarforceClass(AbcClass):
                 self.destroyed += 1
                 self.star = self.star[0:12]
                 self.trials += 1
+                self.meso_spent += self.item_price
                 print("Item destroyed", self.destroyed, " th..")
             # Fail
             else:
-                if self.current_star > 10:
+                if self.current_star > 10 and self.current_star != 15 and self.current_star != 20:
                     self.current_star -= 1
                     self.star.pop()
                     self.trials += 1
+                    self.chancetime += 1
                 else:
                     self.trials += 1
-
-            print("Trial[", self.trials, "], success [", self.success_count, "] Fail [",
+                    self.chancetime += 1
+            self.show_current_star()
+            self.meso_spent += self.calc_meso_used(self.current_star)
+            print("[★", self.current_star, "] Trial[", self.trials, "], success [", self.success_count, "] Fail [",
                   self.trials - self.success_count, "]")
         print("Upgrade Complete")
+        print("Used Item Price :", self.item_price)
         print("Total destroy :", self.destroyed, ", Total Trials :", self.trials)
-
-
-
+        print("Total Meso Spent :", format(self.meso_spent, ","))
 
     def show_current_star(self):
         for i in self.star:
-            print(self.star[i])
-        print("\n")
+            print(i, end='')
+        for i in range(25 - len(self.star)):
+            print('☆',end='')
         pass
 
-    def calc_expectation(self, meso, target):   # calc expectation to target value
-        pass
-
-    def calc_meso_used(self, meso, trial):  # clac current meso spent
+    def calc_meso_used(self, star):  # clac current meso spent
+        if star < 10:
+            self.money_temp = math.trunc(1000 + (self.item_lev ** 3) * (star + 1)/25)
+            return self.money_temp - self.money_temp % 10
+        elif star < 15:
+             self.money_temp = math.trunc(1000 + (self.item_lev ** 3) * ((star + 1)**2.7)/400)
+             return self.money_temp - self.money_temp % 10
+        else:
+            self.money_temp = math.trunc(1000 + (self.item_lev ** 3) * ((star + 1)**2.7)/200)
+            return self.money_temp - self.money_temp % 10
         pass
 
     def calc_stat(self):  # calc end stat
