@@ -56,8 +56,8 @@ class AbcClass(metaclass=ABCMeta):
                 self.sim_status = 0
                 self.sleepn(1)
 
-    def calc_pct(self, max):    # make random integer range 1~max
-        rand_num = random.uniform(1, max)
+    def calc_pct(self, max):    # make random float number range 0.0~max
+        rand_num = random.uniform(0, max)
         return rand_num
 
     @abstractmethod
