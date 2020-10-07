@@ -10,10 +10,16 @@ from time import sleep
 
 
 class AbcClass(metaclass=ABCMeta):
+    # [sequence][trial][suc][suc_continued][destroy][meso]
+    sim_result = [[]*6]
+    # [0 mean_trial, 1 mean_meso, 2 mean_des, 3 maximum_trial, 4 maximum_fail, 5 continuous_success,
+    # 6 continuous_fail, 7 destroy, 8 max_meso, 9 min_meso]
+    sim_ststic_result = []*10
     # console wait
     def sleepn(self, n):
         sleep(n)
         pass
+
     # console clear
     def clear(self):
         print('\n' * 100)
@@ -59,6 +65,19 @@ class AbcClass(metaclass=ABCMeta):
     def calc_pct(self, max):    # make random float number range 0.0~max
         rand_num = random.uniform(0, max)
         return rand_num
+
+    def compair_continuous(self, seq, temp):
+        if AbcClass.sim_result[seq][3] < temp:
+            AbcClass.sim_result[seq][3] = temp
+        pass
+
+    def calc_average(self, seq, ref_idx, result_idx):
+        temp = 0
+        for i in range(seq):
+            temp += AbcClass.sim_result[i][ref_idx]
+        AbcClass.sim_ststic_result[result_idx] = temp/seq
+        pass
+
 
     @abstractmethod
     def calc_meso_used(self):    #clac current meso spent
