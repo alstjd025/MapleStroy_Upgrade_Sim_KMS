@@ -138,15 +138,41 @@ class StarforceClass(AbcClass):
             AbcClass.sim_result[self.seq_itr][5] = self.meso_spent
             print("Seq [", self.seq_itr, "] Trial: ", self.trials)
             self.reset_var()
-
+            self.seq_itr += 1
         # end of simulation sequence
+
+
+    def result_caculation_starforce(self):
         print("Simulation Complete")
+        print("Starting calculation")
         self.calc_average(self.tg_seq, 0, 1)
+        print("Average trial calculation complete")
         self.calc_average(self.tg_seq, 1, 5)
+        print("Average meso calculation complete")
         self.calc_average(self.tg_seq, 2, 4)
-        print("Used Item Price :", self.item_price)
-        print("Average destroy :", self.destroyed, ", Average Trials :", self.trials)
-        print("Average Meso Spent :", format(self.meso_spent, ","))
+        print("Average destroy calculation compelte")
+        self.find_maximum(self.tg_seq, 3, 1)
+        print("Maximum trial calculation complete")
+        self.find_maximum(self.tg_seq, 4, 3)
+        print("Maximum continuous success calculation complete")
+        self.find_maximum(self.tg_seq, 5, 4)
+        print("Maximum destroy calculation complete")
+        self.find_maximum(self.tg_seq, 6, 5)
+        print("Maximum meso calculation complete")
+        self.find_minimum(self.tg_seq, 7, 5)
+        print("Minimum meso calculation complete")
+        print("-----------------------------------------------")
+        print("Simulation Result")
+        print("Used Item Price :", format(self.item_price), ",")
+        print("Average Trial :", AbcClass.sim_ststic_result[0])
+        print("Average Meso :", AbcClass.sim_ststic_result[1])
+        print("Average Destroy :", AbcClass.sim_ststic_result[2])
+        print("Maximum Trial :", AbcClass.sim_ststic_result[3])
+        print("Maximum continuous Success :", AbcClass.sim_ststic_result[4])
+        print("Maximum Destroy :", AbcClass.sim_ststic_result[5])
+        print("Maximum Meso :", AbcClass.sim_ststic_result[6])
+        print("Minimum Meso :", AbcClass.sim_ststic_result[7])
+        print("-----------------------------------------------")
 
     def show_current_star(self):
         for i in self.star:

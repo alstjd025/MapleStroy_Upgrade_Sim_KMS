@@ -10,10 +10,10 @@ from time import sleep
 
 
 class AbcClass(metaclass=ABCMeta):
-    # [sequence][trial][suc][suc_continued][destroy][meso]
+    # [0 sequence][1 trial][2 suc][3 suc_continued][4 destroy][5 meso]
     sim_result = [[]*6]
-    # [0 mean_trial, 1 mean_meso, 2 mean_des, 3 maximum_trial, 4 maximum_fail, 5 continuous_success,
-    # 6 continuous_fail, 7 destroy, 8 max_meso, 9 min_meso]
+    # [0 mean_trial, 1 mean_meso, 2 mean_des, 3 maximum_trial, 4 continuous_success,
+    #  5 max_destroy, 6 max_meso, 7 min_meso]
     sim_ststic_result = []*10
     # console wait
     def sleepn(self, n):
@@ -76,6 +76,22 @@ class AbcClass(metaclass=ABCMeta):
         for i in range(seq):
             temp += AbcClass.sim_result[i][ref_idx]
         AbcClass.sim_ststic_result[result_idx] = temp/seq
+        pass
+
+    def find_maximum(self, seq, ref_idx, result_idx):
+        temp = AbcClass.sim_result[0][ref_idx]
+        for i in range(1, seq):
+            if temp < AbcClass.sim_result[i][ref_idx]:
+                temp = AbcClass.sim_result[i][ref_idx]
+        AbcClass.sim_ststic_result[result_idx] = temp
+        pass
+
+    def find_minimum(self, seq, ref_idx, result_idx):
+        temp = AbcClass.sim_result[0][ref_idx]
+        for i in range(1, seq):
+            if temp > AbcClass.sim_result[i][ref_idx]:
+                temp = AbcClass.sim_result[i][ref_idx]
+        AbcClass.sim_ststic_result[result_idx] = temp
         pass
 
 
