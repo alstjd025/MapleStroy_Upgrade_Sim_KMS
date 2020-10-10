@@ -84,6 +84,7 @@ class StarforceClass(AbcClass):
         print("How many time do you want to Simulate?")
         self.tg_seq = int(input())   # setting target sequence
         self.clear()
+        self.append_sim_result()
         while self.seq_itr != self.tg_seq:
             while self.current_star != self.target:
                 self.success_chance = datasheet.st_up[self.current_star]
@@ -130,7 +131,7 @@ class StarforceClass(AbcClass):
                 #print("[★", self.current_star, "] Trial[", self.trials, "], success [", self.success_count, "] Fail [",
                 #      self.trials - self.success_count, "]")
                 self.compair_continuous(self.seq_itr, self.success_cont_temp)
-            AbcClass.sim_result.append([[] * 6])
+            self.append_sim_result()
             AbcClass.sim_result[self.seq_itr][0] = self.seq_itr
             AbcClass.sim_result[self.seq_itr][1] = self.trials
             AbcClass.sim_result[self.seq_itr][2] = self.success_count
@@ -140,6 +141,8 @@ class StarforceClass(AbcClass):
             self.reset_var()
             self.seq_itr += 1
         # end of simulation sequence
+        self.result_caculation_starforce()
+        pass
 
 
     def result_caculation_starforce(self):
@@ -173,12 +176,14 @@ class StarforceClass(AbcClass):
         print("Maximum Meso :", AbcClass.sim_ststic_result[6])
         print("Minimum Meso :", AbcClass.sim_ststic_result[7])
         print("-----------------------------------------------")
+        pass
 
     def show_current_star(self):
         for i in self.star:
             print(i, end='')
         for i in range(25 - len(self.star)):
-            print('☆',end='')
+            print('☆', end='')
+        print('\n')
         pass
 
     def calc_meso_used(self, star):  # clac current meso spent
