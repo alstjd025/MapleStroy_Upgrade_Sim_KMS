@@ -67,11 +67,13 @@ class AbcClass(metaclass=ABCMeta):
         return rand_num
 
     def append_sim_result(self):
-        a = [[0]*6]
-        AbcClass.sim_result.append(a)
+        a = [0]*6
+        self.sim_result.append(a)
         pass
 
     def compair_continuous(self, seq, temp):
+        print("con : ", AbcClass.sim_result[0][3])
+        print("seq : ", seq)
         if AbcClass.sim_result[seq][3] < temp:
             AbcClass.sim_result[seq][3] = temp
         pass

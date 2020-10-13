@@ -43,8 +43,6 @@ class StarforceClass(AbcClass):
         self.fail_chance = 0
         self.destroy_chance = 0
         self.destroyed = 0
-        self.destroy_prevent = 2
-        self.item_price = 0
         self.chancetime = 0
         self.money_temp = 0
 
@@ -131,7 +129,6 @@ class StarforceClass(AbcClass):
                 #print("[★", self.current_star, "] Trial[", self.trials, "], success [", self.success_count, "] Fail [",
                 #      self.trials - self.success_count, "]")
                 self.compair_continuous(self.seq_itr, self.success_cont_temp)
-            self.append_sim_result()
             AbcClass.sim_result[self.seq_itr][0] = self.seq_itr
             AbcClass.sim_result[self.seq_itr][1] = self.trials
             AbcClass.sim_result[self.seq_itr][2] = self.success_count
@@ -140,7 +137,9 @@ class StarforceClass(AbcClass):
             print("Seq [", self.seq_itr, "] Trial: ", self.trials)
             self.reset_var()
             self.seq_itr += 1
-        # end of simulation sequence
+            self.append_sim_result()
+
+        # end of simulation sequence, calculate result
         self.result_caculation_starforce()
         pass
 
