@@ -23,6 +23,7 @@ class WindowClass(QMainWindow, form_class) :
         self.mvp: int    # 0없음 1브론즈 2실버 3골드 4다이아 5레드
         self.pcroom: bool
         self.discount_event: bool
+        self.st_progress.setValue(0)
         self.st_start.clicked.connect(self.sim_start)
         self.st_stop.clicked.connect(self.sim_stop)
 
@@ -50,6 +51,9 @@ class WindowClass(QMainWindow, form_class) :
 
     def sim_stop(self):
         self.st_result.setPlainText("Simulation Stopped by user")
+
+    def updateprogress(self, cur):
+        self.st_progress.setValue(cur/self.tg_seq * 100)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

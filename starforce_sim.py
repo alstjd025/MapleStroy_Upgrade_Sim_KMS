@@ -52,13 +52,10 @@ class StarforceClass(AbcClass):
         pass
 
     def main_simulation(self, myui):
-        print("go sim")
         self.current_star = self.start
         self.append_sim_result()
         while self.seq_itr != self.tg_seq:
-            print("seq")
             while self.current_star != self.target:
-                print("queue")
                 self.success_chance = datasheet.st_up[self.current_star]
                 self.fail_chance = 100 - datasheet.st_up[self.current_star]
                 self.destroy_chance = datasheet.st_des[self.current_star]
@@ -109,6 +106,7 @@ class StarforceClass(AbcClass):
             self.reset_var()
             self.seq_itr += 1
             self.append_sim_result()
+            myui.updateprogress(self.seq_itr)
 
         # end of simulation sequence, calculate result
         self.result_caculation_starforce(myui)
@@ -117,7 +115,6 @@ class StarforceClass(AbcClass):
 
     def result_caculation_starforce(self, myui):
         myui.append_screen("Simulation Complete")
-        myui.append_screen("Starting calculation")
         self.calc_average(self.tg_seq, 0, 1)
         myui.append_screen("Average trial calculation complete")
         self.calc_average(self.tg_seq, 1, 5)
