@@ -11,12 +11,12 @@ set lev -> set starting -> set target -> simulate
 """
 
 class StarforceClass(AbcClass):
-    def __init__(self):
-        self.tg_seq = 0
+    def __init__(self, myui):
+        self.tg_seq = myui.tg_seq
         self.seq_itr = 0
-        self.start = 0
-        self.target = 0
-        self.item_lev = 0
+        self.start = myui.start
+        self.target = myui.target
+        self.item_lev = myui.item_lev
         self.current_star = 0
         self.meso_spent = 0
         self.star = []
@@ -27,10 +27,11 @@ class StarforceClass(AbcClass):
         self.fail_chance = 0
         self.destroy_chance = 0
         self.destroyed = 0
-        self.destroy_prevent = 2
-        self.item_price = 0
+        self.destroy_prevent = myui.destroy_prevent
+        self.item_price = myui.item_price
         self.chancetime = 0
         self.money_temp = 0
+        print("init complete")
 
     def reset_var(self):
         self.current_star = 0
@@ -47,44 +48,17 @@ class StarforceClass(AbcClass):
         self.money_temp = 0
 
 
-    def starforce_starting_ui(self):
-        self.clear()
-        print("Starforce upgrade Simulation")
-        print("-----------------------------------------------")
-        self.item_lev = self.get_item_level()
-        self.clear()
-        print(self.item_lev, "Lv Item upgrade")
-        print("-----------------------------------------------")
-        self.clear()
-        print("Input Item Price")
-        print("-----------------------------------------------")
-        self.item_price = int(input())
-        self.clear()
-        self.start = int(input("Set Starting Star(min 0 ~ max 24) : "))
-        print("Set Target Star(min", self.start, "~ max 25) : ")
-        self.target = int(input())
-        while self.destroy_prevent == 2:
-            print("Use Destroy Prevention? [y/n]")
-            answer = input()
-            if answer == 'y':
-                self.destroy_prevent = 1
-            elif answer == 'n':
-                self.destroy_prevent = 0
-            else:
-                self.destroy_prevent = 2
+    def starforce_starting_ui(self, myui):
         pass
 
-    def main_simulation(self):
-        self.clear()
+    def main_simulation(self, myui):
+        print("go sim")
         self.current_star = self.start
-        print("Starforce upgrade Simulation Start")
-        print("-----------------------------------------------")
-        print("How many time do you want to Simulate?")
-        self.tg_seq = int(input())   # setting target sequence
-        self.clear()
         self.append_sim_result()
         while self.seq_itr != self.tg_seq:
+            print("seq")
             while self.current_star != self.target:
+                print("queue")
                 self.success_chance = datasheet.st_up[self.current_star]
                 self.fail_chance = 100 - datasheet.st_up[self.current_star]
                 self.destroy_chance = datasheet.st_des[self.current_star]
@@ -111,7 +85,6 @@ class StarforceClass(AbcClass):
                     self.star = self.star[0:12]
                     self.trials += 1
                     self.meso_spent += self.item_price
-                    print("Item destroyed", self.destroyed, " th..")
                 # Fail
                 else:
                     if self.current_star > 10 and self.current_star != 15 and self.current_star != 20:
@@ -124,57 +97,55 @@ class StarforceClass(AbcClass):
                         self.success_cont_temp = 0
                         self.trials += 1
                         self.chancetime += 1
-                self.show_current_star()
+                #self.show_current_star()
                 self.meso_spent += self.calc_meso_used(self.current_star)
-                #print("[★", self.current_star, "] Trial[", self.trials, "], success [", self.success_count, "] Fail [",
-                #      self.trials - self.success_count, "]")
                 self.compair_continuous(self.seq_itr, self.success_cont_temp)
             AbcClass.sim_result[self.seq_itr][0] = self.seq_itr
             AbcClass.sim_result[self.seq_itr][1] = self.trials
             AbcClass.sim_result[self.seq_itr][2] = self.success_count
             AbcClass.sim_result[self.seq_itr][4] = self.destroyed
             AbcClass.sim_result[self.seq_itr][5] = self.meso_spent
-            print("Seq [", self.seq_itr, "] Trial: ", self.trials)
+            #myui.append_screen(f"Seq [{self.seq_itr} ] Trial: {self.trials}")
             self.reset_var()
             self.seq_itr += 1
             self.append_sim_result()
 
         # end of simulation sequence, calculate result
-        self.result_caculation_starforce()
+        self.result_caculation_starforce(myui)
         pass
 
 
-    def result_caculation_starforce(self):
-        print("Simulation Complete")
-        print("Starting calculation")
+    def result_caculation_starforce(self, myui):
+        myui.append_screen("Simulation Complete")
+        myui.append_screen("Starting calculation")
         self.calc_average(self.tg_seq, 0, 1)
-        print("Average trial calculation complete")
+        myui.append_screen("Average trial calculation complete")
         self.calc_average(self.tg_seq, 1, 5)
-        print("Average meso calculation complete")
+        myui.append_screen("Average meso calculation complete")
         self.calc_average(self.tg_seq, 2, 4)
-        print("Average destroy calculation compelte")
+        myui.append_screen("Average destroy calculation compelte")
         self.find_maximum(self.tg_seq, 3, 1)
-        print("Maximum trial calculation complete")
+        myui.append_screen("Maximum trial calculation complete")
         self.find_maximum(self.tg_seq, 4, 3)
-        print("Maximum continuous success calculation complete")
+        myui.append_screen("Maximum continuous success calculation complete")
         self.find_maximum(self.tg_seq, 5, 4)
-        print("Maximum destroy calculation complete")
+        myui.append_screen("Maximum destroy calculation complete")
         self.find_maximum(self.tg_seq, 6, 5)
-        print("Maximum meso calculation complete")
+        myui.append_screen("Maximum meso calculation complete")
         self.find_minimum(self.tg_seq, 7, 5)
-        print("Minimum meso calculation complete")
-        print("-----------------------------------------------")
-        print("Simulation Result")
-        print("Used Item Price :", format(self.item_price), ",")
-        print("Average Trial :", AbcClass.sim_ststic_result[0])
-        print("Average Meso :", AbcClass.sim_ststic_result[1])
-        print("Average Destroy :", AbcClass.sim_ststic_result[2])
-        print("Maximum Trial :", AbcClass.sim_ststic_result[3])
-        print("Maximum continuous Success :", AbcClass.sim_ststic_result[4])
-        print("Maximum Destroy :", AbcClass.sim_ststic_result[5])
-        print("Maximum Meso :", AbcClass.sim_ststic_result[6])
-        print("Minimum Meso :", AbcClass.sim_ststic_result[7])
-        print("-----------------------------------------------")
+        myui.append_screen("Minimum meso calculation complete")
+        myui.append_screen("-----------------------------------------------")
+        myui.append_screen("Simulation Result")
+        myui.append_screen(f"Used Item Price :{format(self.item_price)}")
+        myui.append_screen(f"Average Trial : {AbcClass.sim_ststic_result[0]}")
+        myui.append_screen(f"Average Meso :, {AbcClass.sim_ststic_result[1]}")
+        myui.append_screen(f"Average Destroy :, {AbcClass.sim_ststic_result[2]}")
+        myui.append_screen(f"Maximum Trial :, {AbcClass.sim_ststic_result[3]}")
+        myui.append_screen(f"Maximum continuous Success : {AbcClass.sim_ststic_result[4]}")
+        myui.append_screen(f"Maximum Destroy :, {AbcClass.sim_ststic_result[5]}")
+        myui.append_screen(f"Maximum Meso :, {AbcClass.sim_ststic_result[6]}")
+        myui.append_screen(f"Minimum Meso :, {AbcClass.sim_ststic_result[7]}")
+        myui.append_screen("-----------------------------------------------")
         pass
 
     def show_current_star(self):

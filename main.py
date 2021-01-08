@@ -43,7 +43,7 @@ from abs_class import *
 from starforce_sim import *
 from scrolls_sim import *
 from pot_sim import *
-
+from ui import *
 
 """
 status
@@ -53,42 +53,23 @@ status
 3 potential cube
 4 exit
 """
+def start(myWindow):
+    sim = StarforceClass(myWindow)
+    sim.starforce_starting_ui(myWindow)
+    sim.main_simulation(myWindow)
+    sim.clear()
+    app.exec_()
 
-status = 1
-select = 0
-if status == 1:
-    print("MapleStory Item Upgrade Simulator[kms] ver 0.1")
-    print("-----------------------------------------------")
-    print("1. Starforce Simulator")
-    print("2. Scroll upgrade Simulator")
-    print("3. Potential cube Simulator")
-    print("4. Exit")
-    select = input("Choose action : ")
 
-while status != 4:
-    if select == '1':
-        status = 1
-        sim = StarforceClass()
-        sim.clear()
-        sim.starforce_starting_ui()
-        sim.main_simulation()
-        status = 4
-    elif select == '2':
-        status = 2
-        print("not implemented")
-    elif select == '3':
-        status = 3
-        print("not implemented")
-    elif select == '4':
-        status = 4
-        print("Exit... end status :", status)
-        exit(0)
-    else:
-        sim = StarforceClass()
-        sim.clear()
-        print("Input error! Please check your command")
-        status = 0
-        select = sim.main_ui()
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    myWindow = WindowClass()
+    myWindow.show()
+    myWindow.st_start.clicked.connect(start(myWindow))
+
+
+
+
 
 
 
