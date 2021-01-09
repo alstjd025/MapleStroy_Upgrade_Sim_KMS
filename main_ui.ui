@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>main</class>
+ <widget class="QWidget" name="main">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>654</width>
+    <height>550</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>KMS 강화 시뮬레이터 beta</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icon.bmp</normaloff>icon.bmp</iconset>
+  </property>
+  <widget class="QTabWidget" name="maintab">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>631</width>
+     <height>491</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="starforce_tab">
+    <property name="whatsThis">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;fff&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <attribute name="title">
+     <string>스타포스</string>
+    </attribute>
+    <widget class="QGroupBox" name="simulation_setting_box">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>591</width>
+       <height>171</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>시뮬레이션 설정</string>
+     </property>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>111</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>시뮬레이션 횟수</string>
+      </property>
+      <widget class="QLineEdit" name="st_sim_num">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;몇 번 시뮬레이션 할지 입력합니다.&lt;/p&gt;&lt;p&gt;(ex. 100  10만을초과할시 프로그램이 멈출 수 있습니다)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+       <property name="maxLength">
+        <number>100000</number>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>111</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>스타포스 설정</string>
+      </property>
+      <widget class="QLineEdit" name="st_start_force">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;스타포스 시작 단계를 입력합니다.&lt;/p&gt;&lt;p&gt;(최소 0 이상의 값)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="st_end_force">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>50</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;목표 스타포스를 입력합니다.&lt;/p&gt;&lt;p&gt;(최대 25)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>20</y>
+        <width>120</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>아이템 설정</string>
+      </property>
+      <widget class="QComboBox" name="st_item_lv">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>81</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;아이템 레벨을 설정합니다&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>150</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>160</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>200</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>101</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>아이템 가격</string>
+       </property>
+       <widget class="QLineEdit" name="st_item_price">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>81</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>81</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;아이템 가격을 입력합니다.&lt;/p&gt;&lt;p&gt;(최소 0)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_5">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>20</y>
+        <width>211</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>옵션</string>
+      </property>
+      <widget class="QCheckBox" name="st_dst_prev">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>101</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>파괴방지</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="st_pcroom">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>101</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>PC방</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="st_eventB">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>40</y>
+         <width>101</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>할인 이벤트</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="st_eventA">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>101</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>15~16 이벤트</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="st_starcatch">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>20</y>
+         <width>81</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>스타캐치</string>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_6">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>120</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>MVP</string>
+       </property>
+       <widget class="QComboBox" name="st_mvp">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>76</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>없음</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>브론즈</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>실버</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>골드</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>다이아</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>레드</string>
+         </property>
+        </item>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="st_start">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>20</y>
+        <width>81</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>시작</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="st_stop">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>90</y>
+        <width>81</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>정지</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="result_box">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>190</y>
+       <width>591</width>
+       <height>221</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>결과</string>
+     </property>
+     <widget class="QTextEdit" name="st_result">
+      <property name="geometry">
+       <rect>
+        <x>13</x>
+        <y>20</y>
+        <width>561</width>
+        <height>181</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QProgressBar" name="st_progress">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>420</y>
+       <width>581</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="value">
+      <number>24</number>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="scroll_tab">
+    <attribute name="title">
+     <string>주문서</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="potential_tab">
+    <attribute name="title">
+     <string>잠재능력</string>
+    </attribute>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>520</y>
+     <width>171</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>made by. 짙은핑크 Elisium</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>10</y>
+     <width>311</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>옵션 위에 포인터를 위치시키면 도움말을 볼 수 있습니다.</string>
+   </property>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>maintab</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
