@@ -60,7 +60,7 @@ class AbcClass(metaclass=ABCMeta):
 
 
     @abstractmethod
-    def calc_meso_used(self):    #clac current meso spent
+    def calc_meso_used(self, parm1):    #clac current meso spent
         pass
 
     @abstractmethod

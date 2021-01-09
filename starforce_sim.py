@@ -56,19 +56,20 @@ class StarforceClass(AbcClass):
         self.append_sim_result()
         while self.seq_itr != self.tg_seq:
             while self.current_star != self.target:
+                """start of single sequence"""
                 self.success_chance = datasheet.st_up[self.current_star]
                 self.fail_chance = 100 - datasheet.st_up[self.current_star]
                 self.destroy_chance = datasheet.st_des[self.current_star]
                 self.chance = self.calc_pct(100)
                 # Succeed
-                if self.chancetime == 2:
+                if self.chancetime == 2:  # chance time succeed
                     self.success_cont_temp += 1
                     self.current_star += 1
                     self.success_count += 1
                     self.star.append("★")
                     self.trials += 1
                     self.chancetime = 0
-                elif self.chance <= self.success_chance:
+                elif self.chance <= self.success_chance:   # normal succeed
                     self.success_cont_temp += 1
                     self.current_star += 1
                     self.success_count += 1
@@ -82,7 +83,7 @@ class StarforceClass(AbcClass):
                     self.star = self.star[0:12]
                     self.trials += 1
                     self.meso_spent += self.item_price
-                # Fail
+                # Fail - not destroyed
                 else:
                     if self.current_star > 10 and self.current_star != 15 and self.current_star != 20:
                         self.success_cont_temp = 0
@@ -97,6 +98,7 @@ class StarforceClass(AbcClass):
                 #self.show_current_star()
                 self.meso_spent += self.calc_meso_used(self.current_star)
                 self.compair_continuous(self.seq_itr, self.success_cont_temp)
+                """end of single sequence"""
             AbcClass.sim_result[self.seq_itr][0] = self.seq_itr
             AbcClass.sim_result[self.seq_itr][1] = self.trials
             AbcClass.sim_result[self.seq_itr][2] = self.success_count
@@ -112,6 +114,17 @@ class StarforceClass(AbcClass):
         self.result_caculation_starforce(myui)
         pass
 
+    def chance_time_succeed(self):
+        pass
+
+    def normal_succeed(self):
+        pass
+
+    def fail_not_destroyed(self):
+        pass
+
+    def fail_destroyed(self):
+        pass
 
     def result_caculation_starforce(self, myui):
         myui.append_screen("Simulation Complete")
@@ -135,7 +148,7 @@ class StarforceClass(AbcClass):
         myui.append_screen("Simulation Result")
         myui.append_screen(f"Used Item Price :{format(self.item_price)}")
         myui.append_screen(f"Average Trial : {AbcClass.sim_ststic_result[0]}")
-        myui.append_screen(f"Average Meso :, {AbcClass.sim_ststic_result[1]}")
+        myui.append_screen(f"Average Meso :, {int(AbcClass.sim_ststic_result[1])}")
         myui.append_screen(f"Average Destroy :, {AbcClass.sim_ststic_result[2]}")
         myui.append_screen(f"Maximum Trial :, {AbcClass.sim_ststic_result[3]}")
         myui.append_screen(f"Maximum continuous Success : {AbcClass.sim_ststic_result[4]}")
@@ -152,6 +165,17 @@ class StarforceClass(AbcClass):
             print('☆', end='')
         print('\n')
         pass
+
+    """
+    할인율
+    할인 이벤트
+    
+    mvp 없음 -> 0%
+    mvp 브론즈 실버 골드 -> 5%
+    mvp 다이아 레드 -> 10%
+    pc방 -> 5%
+    """
+
 
     def calc_meso_used(self, star):  # clac current meso spent
         if star < 10:
